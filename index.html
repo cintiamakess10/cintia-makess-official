@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cintia Makess | Loja Oficial</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #D81B60; /* Pink Profissional */
+            --secondary: #fce4ec; /* Rosa Claro */
+            --text: #2c3e50;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(216, 27, 96, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        
+        body {
+            background-color: var(--secondary);
+            color: var(--text);
+            padding-bottom: 80px;
+            position: relative;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+        
+        .top-bar {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            font-size: 0.85rem;
+            padding: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .nav-menu {
+            display: none;
+            gap: 20px;
+        }
+        
+        @media(min-width: 768px) { .nav-menu { display: flex; } }
+
+        .nav-link {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text);
+            transition: 0.2s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--primary); }
+
+        .nav-icons { display: flex; gap: 20px; align-items: center; }
+        .icon-btn { cursor: pointer; position: relative; color: var(--primary); user-select: none; transition: 0.2s; }
+        .icon-btn:hover { transform: scale(1.1); }
+        
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid white;
+        }
+
+        /* --- CARROUSEL HERO (HOME) --- */
+        .hero-section {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+        }
+
+        .showcase-card {
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            width: 100%;
+            max-width: 900px;
+            transition: opacity 0.5s ease;
+        }
+
+        @media(min-width: 768px) {
+            .showcase-card { flex-direction: row; height: 500px; }
+        }
+
+        .showcase-img {
+            flex: 1;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .showcase-img img {
+            max-width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+            transition: transform 0.5s;
+        }
+
+        .showcase-info {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(252,228,236,0.5) 100%);
+        }
+
+        .tag-highlight {
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            width: fit-content;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .showcase-title { font-size: 2rem; color: var(--text); margin-bottom: 15px; line-height: 1.2; }
+        .showcase-desc { color: #666; margin-bottom: 25px; line-height: 1.6; }
+        .showcase-price { font-size: 2.5rem; color: var(--primary); font-weight: 800; margin-bottom: 30px; }
+
+        /* --- LOJA & FILTROS --- */
+        .shop-container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        .filters-bar {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .filter-group { display: flex; align-items: center; gap: 10px; }
+        .filter-select {
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            color: var(--text);
+            outline: none;
+            font-family: inherit;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover { transform: translateY(-5px); }
+
+        .p-img-box {
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background: #fff;
+        }
+        .p-img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        .p-details { padding: 15px; text-align: center; display: flex; flex-direction: column; flex-grow: 1; }
+        .p-cat-label { font-size: 0.75rem; color: #999; text-transform: uppercase; margin-bottom: 5px; }
+        .p-name { font-weight: 700; margin-bottom: 10px; color: var(--text); font-size: 1rem; }
+        .p-price-tag { font-size: 1.3rem; color: var(--primary); font-weight: 800; margin-top: auto; }
+        
+        .btn-add {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 25px;
+            margin-top: 15px;
+            transition: 0.2s;
+        }
+        .btn-add:hover { background: #ad1457; }
+
+        /* --- PAGINAS GERAIS --- */
+        .view-section { display: none; animation: fadeIn 0.4s; }
+        .view-section.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- FOOTER NAV (MOBILE) --- */
+        .mobile-nav {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 900;
+        }
+        @media(min-width: 768px) { .mobile-nav { display: none; } }
+        
+        .m-nav-item { display: flex; flex-direction: column; align-items: center; font-size: 0.7rem; color: #888; gap: 4px; }
+        .m-nav-item.active { color: var(--primary); font-weight: bold; }
+
+        /* --- DETALHES MODAL, CARRINHO E TOAST (Mantidos do anterior) --- */
+        #product-detail { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; backdrop-filter: blur(3px); overflow-y: auto;}
+        .detail-card { background: white; width: 90%; max-width: 800px; margin: 50px auto; border-radius: 20px; padding: 30px; position: relative; }
+        .close-btn { position: absolute; top: 15px; right: 15px; font-size: 2rem; cursor: pointer; color: var(--primary); }
+        
+        #cart-sidebar {
+            position: fixed; top: 0; right: -400px; width: 100%; max-width: 380px; height: 100vh;
+            background: white; z-index: 3000; box-shadow: -5px 0 20px rgba(0,0,0,0.1); transition: 0.4s;
+            display: flex; flex-direction: column;
+        }
+        #cart-sidebar.open { right: 0; }
+        
+        .cart-header { padding: 20px; background: var(--primary); color: white; display: flex; justify-content: space-between; align-items: center; }
+        .cart-body { flex: 1; overflow-y: auto; padding: 20px; background: var(--secondary); }
+        .cart-item { display: flex; gap: 10px; margin-bottom: 15px; background: white; padding: 10px; border-radius: 10px; }
+        .cart-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 5px; }
+        .cart-controls button { width: 25px; height: 25px; border-radius: 50%; border: 1px solid var(--primary); background: white; color: var(--primary); cursor: pointer; }
+        .cart-footer { padding: 20px; background: white; border-top: 1px solid #eee; }
+        
+        .checkout-btn { width: 100%; padding: 15px; background: #25D366; color: white; border: none; border-radius: 30px; font-weight: bold; font-size: 1rem; cursor: pointer; display: flex; justify-content: center; gap: 10px; align-items: center; }
+        
+        #toast { visibility: hidden; min-width: 250px; background-color: var(--primary); color: #fff; text-align: center; border-radius: 50px; padding: 16px; position: fixed; z-index: 4000; left: 50%; bottom: 80px; transform: translateX(-50%); }
+        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 80px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 80px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">🚚 Frete GRÁTIS nas compras acima de R$ 100,00 para Alumínio e região!</div>
+        <div class="nav-container">
+            <div class="logo" onclick="app.nav('home')">Cintia Makess</div>
+            
+            <nav class="nav-menu">
+                <span class="nav-link" onclick="app.nav('home')">Início</span>
+                <span class="nav-link" onclick="app.nav('shop')">Produtos</span>
+                <span class="nav-link" onclick="app.nav('faq')">Dúvidas</span>
+            </nav>
+
+            <div class="nav-icons">
+                <div class="icon-btn" onclick="app.toggleCart()">
+                    <span class="material-icons">shopping_bag</span>
+                    <div class="badge" id="cart-count">0</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="view-home" class="view-section active">
+        <section class="hero-section">
+            <div class="showcase-card" id="hero-card">
+                </div>
+        </section>
+        <div style="text-align: center; margin-bottom: 40px;">
+            <button class="btn-add" onclick="app.nav('shop')" style="width: auto; padding: 15px 50px; font-size: 1.2rem;">VER TODOS OS PRODUTOS</button>
+        </div>
+    </main>
+
+    <main id="view-shop" class="view-section">
+        <div class="shop-container">
+            <h2 style="color: var(--primary); margin-bottom: 20px; text-align: center;">Nossa Vitrine</h2>
+            
+            <div class="filters-bar">
+                <div class="filter-group">
+                    <span class="material-icons" style="color: #999;">search</span>
+                    <input type="text" placeholder="Buscar produto..." class="filter-select" onkeyup="app.filterProducts(this.value, 'search')">
+                </div>
+                
+                <div class="filter-group">
+                    <span class="material-icons" style="color: #999;">filter_list</span>
+                    <select id="catFilter" class="filter-select" onchange="app.filterProducts(this.value, 'cat')">
+                        <option value="all">Todas as Categorias</option>
+                        </select>
+                </div>
+
+                <div class="filter-group">
+                    <span class="material-icons" style="color: #999;">sort</span>
+                    <select id="sortFilter" class="filter-select" onchange="app.filterProducts(this.value, 'sort')">
+                        <option value="az">A - Z</option>
+                        <option value="za">Z - A</option>
+                        <option value="low">Menor Preço</option>
+                        <option value="high">Maior Preço</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="products-grid" id="shop-grid">
+                </div>
+        </div>
+    </main>
+
+    <main id="view-faq" class="view-section">
+        <div class="shop-container" style="max-width: 800px;">
+            <h2 style="color: var(--primary); text-align: center; margin-bottom: 30px;">Perguntas Frequentes</h2>
+            
+            <div style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: var(--shadow);">
+                <h3 style="color: var(--primary); margin-bottom: 10px;">Como funciona a entrega?</h3>
+                <p>Entregamos em toda a região de Alumínio. Para compras acima de R$ 100,00, o frete é por nossa conta!</p>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: var(--shadow);">
+                <h3 style="color: var(--primary); margin-bottom: 10px;">Quais as formas de pagamento?</h3>
+                <p>Aceitamos Pix, Cartão de Crédito e Débito. O pagamento é combinado no WhatsApp ao finalizar o pedido.</p>
+            </div>
+        </div>
+    </main>
+
+    <nav class="mobile-nav">
+        <div class="m-nav-item" onclick="app.nav('home')">
+            <span class="material-icons">home</span> Início
+        </div>
+        <div class="m-nav-item" onclick="app.nav('shop')">
+            <span class="material-icons">grid_view</span> Loja
+        </div>
+        <div class="m-nav-item" onclick="app.nav('faq')">
+            <span class="material-icons">help</span> Ajuda
+        </div>
+        <div class="m-nav-item" onclick="app.toggleCart()">
+            <span class="material-icons">shopping_cart</span> Carrinho
+        </div>
+    </nav>
+
+    <div id="product-detail" onclick="if(event.target === this) app.closeDetail()">
+        <div class="detail-card">
+            <span class="close-btn" onclick="app.closeDetail()">&times;</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 30px;">
+                <div style="flex: 1; min-width: 250px;">
+                    <img id="d-img" src="" style="width: 100%; border-radius: 10px;">
+                </div>
+                <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                    <h2 id="d-title" style="color: var(--primary); margin-bottom: 10px;"></h2>
+                    <h3 id="d-price" style="font-size: 2rem; color: #333; margin-bottom: 20px;"></h3>
+                    <p id="d-desc" style="color: #666; line-height: 1.6; margin-bottom: 30px; white-space: pre-line;"></p>
+                    <button class="btn-add" id="d-btn">ADICIONAR AO CARRINHO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Meu Carrinho 💖</h3>
+            <span class="material-icons" onclick="app.toggleCart()" style="cursor: pointer;">close</span>
+        </div>
+        <div class="cart-body" id="cart-items"></div>
+        <div class="cart-footer">
+            <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: bold; margin-bottom: 15px;">
+                <span>Total:</span>
+                <span id="cart-total" style="color: var(--primary);">R$ 0,00</span>
+            </div>
+            <div id="shipping-msg" style="font-size: 0.8rem; color: #25D366; text-align: center; margin-bottom: 10px; font-weight: bold;"></div>
+            <button class="checkout-btn" onclick="app.checkout()">
+                <span class="material-icons">whatsapp</span> FINALIZAR NO WHATSAPP
+            </button>
+        </div>
+    </div>
+
+    <div id="toast">Produto adicionado!</div>
+
+    <script>
+        // --- BASE DE DADOS DOS SEUS PRODUTOS ---
+        const products = [
+            {
+                id: 1,
+                name: "Água Micelar Camomila - Super Poderes",
+                price: 10.00,
+                cat: "Skincare",
+                img: "micelar.jpg", // Foto 4 enviada
+                desc: "Limpeza suave e calmante para sua pele. Remove maquiagem e impurezas sem agredir. Contém extrato de camomila."
+            },
+            {
+                id: 2,
+                name: "Base Líquida 4 Angels",
+                price: 10.00,
+                cat: "Maquiagem",
+                img: "base_angels.jpg", // Foto 5 enviada
+                desc: "Base fluida com acabamento natural. Embalagem pump prática. Ideal para o dia a dia."
+            },
+            {
+                id: 3,
+                name: "Base Matte Femme Paris",
+                price: 10.00,
+                cat: "Maquiagem",
+                img: "base_femme.jpg", // Foto 3 enviada
+                desc: "Alta cobertura e efeito matte. Resistente à água, perfeita para quem busca pele de porcelana."
+            },
+            {
+                id: 4,
+                name: "Kit Bobbie Goods (Cards + Canetinhas)",
+                price: 10.00,
+                cat: "Papelaria",
+                img: "bobbie.jpg", // Foto 2 enviada
+                desc: "Diversão garantida! Kit com 5 cards para colorir do tema Bobbie Goods + conjunto de canetinhas."
+            },
+            {
+                id: 5,
+                name: "Blush Líquido Toque Special",
+                price: 10.00,
+                cat: "Maquiagem",
+                img: "blush.jpg", // Foto 1 enviada
+                desc: "Dê vida às suas bochechas! Blush líquido de alta pigmentação e fácil de esfumar. Tons rosa e vermelho."
+            },
+            {
+                id: 6,
+                name: "Laço Azul Marinho Luxo com Strass",
+                price: 12.00,
+                cat: "Acessórios",
+                img: "laco.jpg", // Foto nova enviada
+                desc: "Elegância pura. Laço de gorgurão azul marinho com centro de coração cravejado em strass.\nCód: 7891025400018"
+            }
+        ];
+
+        const app = {
+            cart: JSON.parse(localStorage.getItem('cintiaCart')) || [],
+            whatsapp: "5515974072640",
+            
+            init: () => {
+                app.updateCartCount();
+                app.renderShop(products);
+                app.populateCategories();
+                app.startCarousel();
+            },
+
+            // --- NAVEGAÇÃO ---
+            nav: (viewId) => {
+                document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+                document.getElementById('view-' + viewId).classList.add('active');
+                
+                document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
+                // Simples highlight logic para desktop
+                if(viewId === 'home') document.querySelectorAll('.nav-link')[0].classList.add('active');
+                if(viewId === 'shop') document.querySelectorAll('.nav-link')[1].classList.add('active');
+                if(viewId === 'faq') document.querySelectorAll('.nav-link')[2].classList.add('active');
+            },
+
+            // --- CARROSSEL AUTOMÁTICO (HOME) ---
+            startCarousel: () => {
+                const card = document.getElementById('hero-card');
+                
+                const updateHero = () => {
+                    // Efeito Fade Out
+                    card.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        // Escolhe produto aleatório
+                        const randomP = products[Math.floor(Math.random() * products.length)];
+                        
+                        card.innerHTML = `
+                            <div class="showcase-img">
+                                <img src="${randomP.img}" onerror="this.src='https://placehold.co/400?text=Foto'">
+                            </div>
+                            <div class="showcase-info">
+                                <div class="tag-highlight">Destaque do Momento</div>
+                                <div class="showcase-title">${randomP.name}</div>
+                                <div class="showcase-desc">${randomP.desc}</div>
+                                <div class="showcase-price">R$ ${randomP.price.toFixed(2).replace('.',',')}</div>
+                                <button class="btn-add" onclick="app.addToCart(${randomP.id})">COMPRAR AGORA</button>
+                            </div>
+                        `;
+                        // Efeito Fade In
+                        card.style.opacity = '1';
+                    }, 500);
+                };
+
+                updateHero(); // Roda a primeira vez
+                setInterval(updateHero, 10000); // Roda a cada 10 segundos
+            },
+
+            // --- LOJA & FILTROS ---
+            populateCategories: () => {
+                const cats = [...new Set(products.map(p => p.cat))];
+                const select = document.getElementById('catFilter');
+                cats.forEach(c => {
+                    const opt = document.createElement('option');
+                    opt.value = c;
+                    opt.innerText = c;
+                    select.appendChild(opt);
+                });
+            },
+
+            filterProducts: (val, type) => {
+                let filtered = [...products];
+                
+                // Pega valores atuais dos inputs
+                const searchVal = type === 'search' ? val : document.querySelector('input[type="text"]').value;
+                const catVal = type === 'cat' ? val : document.getElementById('catFilter').value;
+                const sortVal = type === 'sort' ? val : document.getElementById('sortFilter').value;
+
+                // Filtro Texto
+                if(searchVal) filtered = filtered.filter(p => p.name.toLowerCase().includes(searchVal.toLowerCase()));
+                
+                // Filtro Categoria
+                if(catVal !== 'all') filtered = filtered.filter(p => p.cat === catVal);
+
+                // Ordenação
+                if(sortVal === 'az') filtered.sort((a,b) => a.name.localeCompare(b.name));
+                if(sortVal === 'za') filtered.sort((a,b) => b.name.localeCompare(a.name));
+                if(sortVal === 'low') filtered.sort((a,b) => a.price - b.price);
+                if(sortVal === 'high') filtered.sort((a,b) => b.price - a.price);
+
+                app.renderShop(filtered);
+            },
+
+            renderShop: (list) => {
+                const grid = document.getElementById('shop-grid');
+                grid.innerHTML = list.map(p => `
+                    <div class="product-card" onclick="app.openDetail(${p.id})">
+                        <div class="p-img-box">
+                            <img src="${p.img}" onerror="this.src='https://placehold.co/300?text=Sem+Foto'">
+                        </div>
+                        <div class="p-details">
+                            <span class="p-cat-label">${p.cat}</span>
+                            <div class="p-name">${p.name}</div>
+                            <div class="p-price-tag">R$ ${p.price.toFixed(2).replace('.',',')}</div>
+                            <button class="btn-add" onclick="event.stopPropagation(); app.addToCart(${p.id})">COMPRAR</button>
+                        </div>
+                    </div>
+                `).join('');
+            },
+
+            // --- CARRINHO & CHECKOUT ---
+            addToCart: (id) => {
+                const existing = app.cart.find(item => item.id === id);
+                if(existing) existing.qty++;
+                else app.cart.push({ id: id, qty: 1 });
+                
+                app.saveCart();
+                app.showToast("Adicionado ao carrinho! 💖");
+                app.toggleCart(true); // Abre o carrinho
+            },
+
+            removeFromCart: (id) => {
+                app.cart = app.cart.filter(x => x.id !== id);
+                app.saveCart();
+            },
+
+            changeQty: (id, delta) => {
+                const item = app.cart.find(x => x.id === id);
+                if(item) {
+                    item.qty += delta;
+                    if(item.qty <= 0) app.removeFromCart(id);
+                    else app.saveCart();
+                }
+            },
+
+            saveCart: () => {
+                localStorage.setItem('cintiaCart', JSON.stringify(app.cart));
+                app.updateCartCount();
+                app.renderCart();
+            },
+
+            renderCart: () => {
+                const container = document.getElementById('cart-items');
+                let total = 0;
+                
+                if(app.cart.length === 0) {
+                    container.innerHTML = '<div style="text-align: center; color: #999; margin-top: 50px;">Seu carrinho está vazio 🛍️</div>';
+                    document.getElementById('shipping-msg').innerText = '';
+                } else {
+                    container.innerHTML = app.cart.map(item => {
+                        const p = products.find(x => x.id === item.id);
+                        total += p.price * item.qty;
+                        return `
+                            <div class="cart-item">
+                                <img src="${p.img}" onerror="this.src='https://placehold.co/100'">
+                                <div style="flex: 1;">
+                                    <div style="font-weight: bold; font-size: 0.9rem;">${p.name}</div>
+                                    <div style="color: var(--primary);">R$ ${(p.price * item.qty).toFixed(2).replace('.',',')}</div>
+                                    <div class="cart-controls" style="margin-top: 5px; display: flex; align-items: center; gap: 10px;">
+                                        <button onclick="app.changeQty(${item.id}, -1)">-</button>
+                                        <span>${item.qty}</span>
+                                        <button onclick="app.changeQty(${item.id}, 1)">+</button>
+                                    </div>
+                                </div>
+                                <span class="material-icons" style="color: #999; cursor: pointer;" onclick="app.removeFromCart(${item.id})">delete</span>
+                            </div>
+                        `;
+                    }).join('');
+                }
+
+                document.getElementById('cart-total').innerText = `R$ ${total.toFixed(2).replace('.',',')}`;
+                
+                // Lógica de Frete Grátis
+                const msgEl = document.getElementById('shipping-msg');
+                if(total >= 100) {
+                    msgEl.innerText = "PARABÉNS! VOCÊ GANHOU FRETE GRÁTIS! 🎉";
+                } else if(total > 0) {
+                    msgEl.innerText = `Faltam R$ ${(100 - total).toFixed(2).replace('.',',')} para frete grátis!`;
+                }
+            },
+
+            checkout: () => {
+                if(app.cart.length === 0) return alert("Adicione produtos primeiro! 😊");
+
+                let msg = `Olá Cintia! 👋\nQuero finalizar meu pedido:\n\n`;
+                let total = 0;
+
+                app.cart.forEach(item => {
+                    const p = products.find(x => x.id === item.id);
+                    const subtotal = p.price * item.qty;
+                    total += subtotal;
+                    msg += `▪️ ${item.qty}x ${p.name}\n`;
+                });
+
+                msg += `\n💰 *Total: R$ ${total.toFixed(2).replace('.',',')}*`;
+                
+                if(total >= 100) {
+                    msg += `\n🚚 *FRETE GRÁTIS APLICADO!*`;
+                } else {
+                    msg += `\n(Consultar taxa de entrega)`;
+                }
+
+                msg += `\n\nAguardo confirmação!`;
+                
+                const link = `https://wa.me/${app.whatsapp}?text=${encodeURIComponent(msg)}`;
+                window.open(link, '_blank');
+            },
+
+            // --- UTILITÁRIOS ---
+            updateCartCount: () => {
+                const count = app.cart.reduce((acc, item) => acc + item.qty, 0);
+                document.getElementById('cart-count').innerText = count;
+            },
+            
+            toggleCart: (forceOpen = false) => {
+                const sidebar = document.getElementById('cart-sidebar');
+                if(forceOpen) {
+                    sidebar.classList.add('open');
+                    app.renderCart();
+                } else {
+                    sidebar.classList.toggle('open');
+                    if(sidebar.classList.contains('open')) app.renderCart();
+                }
+            },
+
+            openDetail: (id) => {
+                const p = products.find(x => x.id === id);
+                document.getElementById('d-img').src = p.img;
+                document.getElementById('d-title').innerText = p.name;
+                document.getElementById('d-price').innerText = `R$ ${p.price.toFixed(2).replace('.',',')}`;
+                document.getElementById('d-desc').innerText = p.desc;
+                document.getElementById('d-btn').onclick = () => { app.addToCart(p.id); app.closeDetail(); };
+                document.getElementById('product-detail').style.display = 'block';
+            },
+
+            closeDetail: () => {
+                document.getElementById('product-detail').style.display = 'none';
+            },
+
+            showToast: (msg) => {
+                const x = document.getElementById("toast");
+                x.innerText = msg;
+                x.className = "show";
+                setTimeout(() => { x.className = x.className.replace("show", ""); }, 3000);
+            }
+        };
+
+        // Inicia o app
+        app.init();
+    </script>
+</body>
+</html>
